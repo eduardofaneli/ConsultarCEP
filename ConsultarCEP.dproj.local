@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2017/01/30 14:57:07.000.254,=H:\NBS\DelphiXE\Unit1.pas</Transaction>
+    <Transaction>2017/01/30 15:07:29.000.909,C:\Eduardo Faneli\Consultar CEP\uPrincipal.dfm=H:\NBS\DelphiXE\Unit1.dfm</Transaction>
+    <Transaction>2017/01/30 15:07:29.000.909,C:\Eduardo Faneli\Consultar CEP\uPrincipal.pas=H:\NBS\DelphiXE\Unit1.pas</Transaction>
+    <Transaction>2017/01/30 15:07:33.000.885,C:\Eduardo Faneli\Consultar CEP\ConsultarCEP.dproj=H:\NBS\DelphiXE\Project1.dproj</Transaction>
+    <Transaction>2017/06/02 11:25:32.117,=C:\Eduardo Faneli\Projetos\Consultar CEP\Unit1.pas</Transaction>
+    <Transaction>2017/06/02 13:15:20.292,C:\Eduardo Faneli\Projetos\Consultar CEP\uConsultar.pas=C:\Eduardo Faneli\Projetos\Consultar CEP\Unit1.pas</Transaction>
+    <Transaction>2017/06/02 14:02:02.329,=C:\Eduardo Faneli\Projetos\Consultar CEP\Unit1.pas</Transaction>
+    <Transaction>2017/06/02 14:02:12.752,C:\Eduardo Faneli\Projetos\Consultar CEP\uUtils.pas=C:\Eduardo Faneli\Projetos\Consultar CEP\Unit1.pas</Transaction>
+    <Transaction>2017/06/02 14:19:34.498,=C:\Eduardo Faneli\Projetos\Consultar CEP\Win32\Debug\libeay32.dll</Transaction>
+    <Transaction>2017/06/02 14:19:34.505,=C:\Eduardo Faneli\Projetos\Consultar CEP\Win32\Debug\ssleay32.dll</Transaction>
+  </Transactions>
+</BorlandProject>
