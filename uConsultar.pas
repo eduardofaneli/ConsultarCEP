@@ -36,6 +36,8 @@ type
     FCidade: String;
     FRequestUserAgent: String;
     FResponse: String;
+    FUsePost: Boolean;
+    FRequest: String;
 
     procedure ProcessarRetorno;
 
@@ -47,6 +49,7 @@ type
 
   published
     property UsaSSL           : Boolean             read FUsaSSL           write FUsaSSL           ;
+    property UsePost          : Boolean             read FUsePost          write FUsePost          ;
     property MethodSSL        : TIdSSLVersion       read FMethodSSL        write FMethodSSL        ;
     property ModeSSL          : TIdSSLMode          read FModeSSL          write FModeSSL          ;
     property VerifyModeSSL    : TIdSSLVerifyModeSet read FVerifyModeSSL    write FVerifyModeSSL    ;
@@ -66,6 +69,7 @@ type
     property CodIBGE          : String              read FCodIBGE          write FCodIBGE          ;
     property Gia              : String              read FGia              write FGia              ;
     property Response         : String              read FResponse         write FResponse         ;
+    property Request          : String              read FRequest          write FRequest          ;
 
   end;
 
@@ -78,13 +82,19 @@ uses
 
 function TConsultarCEP.ConsultarCEP: Boolean;
 var
-  sResponse: TStringStream;
+  sResponse, sRequest: TStringStream;
 begin
 
   if Encode = nil then
-    sResponse := TStringStream.Create
+  begin
+    sResponse := TStringStream.Create;
+    sRequest  := TStringStream.Create;
+  end
   else
+  begin
     sResponse := TStringStream.Create('', Encode);
+    sRequest := TStringStream.Create('', Encode);
+  end;
   try
 
     Result := False;
@@ -107,7 +117,12 @@ begin
 
       FHttp.Request.UserAgent   := RequestUserAgent;
 
-      FHttp.Get(URL, sResponse);
+      sRequest.WriteString(Request);
+
+      if UsePost then
+        FHttp.Post(URL, sRequest, sResponse)
+      else
+        FHttp.Get(URL, sResponse);
 
       Response := sResponse.DataString;
 
@@ -128,9 +143,8 @@ begin
     end;
 
   finally
-
     FreeAndNil(sResponse);
-
+    FreeAndNil(sRequest);
   end;
 
 end;
@@ -140,7 +154,7 @@ begin
 
   FHttp := TIdHTTP.Create(nil);
   FSSL := TIdSSLIOHandlerSocketOpenSSL.Create(nil);
-
+  UsePost          := False;
   UsaSSL           := False;
   MethodSSL        := sslvSSLv23;
   ModeSSL          := sslmUnassigned;
@@ -175,7 +189,14 @@ begin
   Bairro := GetTagPos(Response, 'BAIRRO');
   TipoLogradouro := GetTagPos(Response, 'TIPO_LOGRADOURO');
   Logradouro := GetTagPos(Response, 'LOGRADOURO');
+
+  if Logradouro = EmptyStr then
+    Logradouro := GetTagPos(Response, 'END');
+
   Complemento := GetTagPos(Response, 'COMPLEMENTO');
+  if Complemento = EmptyStr then
+    Complemento := GetTagPos(Response, 'COMPLEMENTO2');
+
   CodIBGE := GetTagPos(Response, 'IBGE');
   Gia := GetTagPos(Response, 'GIA');
 
