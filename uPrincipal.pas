@@ -109,6 +109,7 @@ begin
         end;
       2:
         begin
+          //WSDL CORREIOS: https://apps.correios.com.br/SigepMasterJPA/AtendeClienteService/AtendeCliente?wsdl
           FConsultarCEP.UsaSSL := False;
           FConsultarCEP.URL := 'https://apps.correios.com.br/SigepMasterJPA/AtendeClienteService/AtendeCliente';
           FConsultarCEP.UsePost := True;

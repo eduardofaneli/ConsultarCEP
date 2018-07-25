@@ -241,10 +241,6 @@ object frmConsultarCEP: TfrmConsultarCEP
           Default = True
           TabOrder = 0
           OnClick = btnConsultarClick
-          ExplicitLeft = 40
-          ExplicitTop = 3
-          ExplicitWidth = 75
-          ExplicitHeight = 25
         end
       end
     end
